@@ -3,27 +3,26 @@
 </div>
 
 <div class="container">
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex">
         <hr>
-        <div class="col-lg-4">
-            <div class="card mx-auto" *ngFor="let dish of dishes; index as i" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+        <div class="col-lg-4 col-md-6 col-sm-12 my-2" *ngFor="let dish of dishes; index as i" >
+            <div class="card mx-auto"style="width: 18rem;">
+                <img src="{{ dish.img }}" class="card-img-top" style="height: 15rem; object-fit:cover;" alt="...">
                 <div class="card-body">
-    <a>
-        {{ dish.name }}
-    </a>
-    <p *ngIf="dish.description">{{ dish.description }}</p>
-    
-
-    <ng-template [ngIf]="dish.availability" [ngIfElse]="avl">
-        <div class="d-flex justify-content-left">
-            <a class="btn btn-details btn-primary me-4" routerLink="/dishes/{{ i }}">Details</a>
-            <a (click)="addToCart(dish)" class="btn btn-primary">Order</a>
-        </div>
-    </ng-template>
-    <ng-template #avl>
-        <div class="text-danger">This product is currently not available!</div>
-    </ng-template>
+                    <h3> {{ dish.name }} </h3>
+                    <p *ngIf="dish.description">{{ dish.description }} </p>
+                    <hr>
+                    <p>€{{ dish.price }}</p>
+                    <hr>
+                    <ng-template [ngIf]="dish.availability" [ngIfElse]="avl">
+                        <div class="d-flex justify-content-left">
+                            <a class="btn btn-details btn-primary me-4" routerLink="/dishes/{{ i }}">Details</a>
+                            <a (click)="addToCart(dish)" class="btn btn-success">Order</a>
+                        </div>
+                    </ng-template>
+                    <ng-template #avl>
+                        <div class="text-danger">This product is currently not available!</div>
+                    </ng-template>
                   
                 </div>
             </div>
